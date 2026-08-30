@@ -1,0 +1,307 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Nicko</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f5f7;
+            color: #222;
+        }
+
+        .nav-1 {
+            background: #111;
+            padding: 18px 20px;
+        }
+
+        .nav-1 ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 45px;
+            list-style: none;
+        }
+
+        .nav-1 a {
+            position: relative;
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 8px 0;
+            transition: 0.3s ease;
+        }
+
+        .nav-1 a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transform: translateX(-50%);
+            transition: 0.3s ease;
+        }
+
+        .nav-1 a:hover {
+            color: #aaa;
+        }
+
+        .nav-1 a:hover::after {
+            width: 100%;
+        }
+
+        .about-section {
+            min-height: calc(100vh - 60px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 70px 8%;
+        }
+
+        .about-container {
+            width: 100%;
+            max-width: 1000px;
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            display: flex;
+            align-items: center;
+            gap: 55px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        .about-image {
+            flex: 0 0 260px;
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 6px solid #f4f5f7;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: 0.4s ease;
+        }
+
+        .about-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .small-title {
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            color: #888;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .about-content h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .about-content h1 span {
+            color: #777;
+        }
+
+        .about-content p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        .info {
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .info-box {
+            background: #f5f5f5;
+            padding: 13px 15px;
+            border-radius: 8px;
+        }
+
+        .info-box strong {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .info-box span {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .about-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            background: #111;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .about-button:hover {
+            background: #555;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 800px) {
+            .about-container {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 25px;
+                gap: 30px;
+            }
+
+            .about-image {
+                flex: none;
+            }
+
+            .about-content h1 {
+                font-size: 34px;
+            }
+
+            .info {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .nav-1 ul {
+                gap: 20px;
+            }
+
+            .nav-1 a {
+                font-size: 12px;
+            }
+
+            .about-section {
+                padding: 40px 5%;
+            }
+
+            .about-container {
+                padding: 30px 20px;
+            }
+
+            .about-image img {
+                width: 190px;
+                height: 190px;
+            }
+
+            .about-content h1 {
+                font-size: 28px;
+            }
+
+            .info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav-1">
+        <ul>
+            <li><a href="place.html">Home</a></li>
+            <li><a href="about-nick.html">About Me</a></li>
+            <li><a href="contact-nick.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="about-section">
+
+        <div class="about-container">
+
+            <div class="about-image">
+                <img src="nicko.jpg" alt="Photo of Nicko">
+            </div>
+
+            <div class="about-content">
+
+                <div class="small-title">
+                    Get To Know Me
+                </div>
+
+                <h1>
+                    Hi, I'm <span>Nicko.</span>
+                </h1>
+
+                <p>
+                    I'm John Nieko Bunayog, a student who is interested
+                    in technology, web development, and creative design.
+                </p>
+
+                <p>
+                    I enjoy creating websites and experimenting with
+                    different layouts, designs, and ideas. This website
+                    is one of my projects where I can showcase my
+                    creativity and my interest in web development.
+                </p>
+
+                <div class="info">
+
+                    <div class="info-box">
+                        <strong>Name</strong>
+                        <span>John Nieko Bunayog</span>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Role</strong>
+                        <span>Web Developer</span>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Interest</strong>
+                        <span>Web Design & Technology</span>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Goal</strong>
+                        <span>To create better websites</span>
+                    </div>
+
+                </div>
+
+                <a href="place.html" class="about-button">
+                    Explore My Website
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>
