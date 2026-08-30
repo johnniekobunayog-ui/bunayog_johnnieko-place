@@ -1,235 +1,491 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>My Top Picks in Manila</title>
-    </head>
-    <body>
-        <section class="places-section">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Top Picks in Manila</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f5f7;
+            color: #222;
+        }
+
+
+        .nav-1 {
+            width: 100%;
+            background-color: #111;
+            padding: 18px 20px;
+            margin-bottom: 50px;
+        }
+
+        .nav-1 ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 45px;
+            list-style: none;
+        }
+
+        .nav-1 a {
+            position: relative;
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            padding: 8px 0;
+            transition: 0.3s ease;
+        }
+
+        .nav-1 a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transform: translateX(-50%);
+            transition: 0.3s ease;
+        }
+
+        .nav-1 a:hover {
+            color: #bbb;
+        }
+
+        .nav-1 a:hover::after {
+            width: 100%;
+        }
+
+
+
+        .places-section {
+            padding: 0 8% 70px;
+            text-align: center;
+        }
+
+
+        .me {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+
+        .places-section h1 {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .section-intro {
+            max-width: 650px;
+            margin: 0 auto 45px;
+            color: #666;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+
+
+        .places-container {
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .place-card {
+            background-color: white;
+            border-radius: 18px;
+            overflow: hidden;
+            text-align: left;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .place-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+
+        .image-box {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .place-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .place-card:hover img {
+            transform: scale(1.07);
+        }
+
+        .place-content {
+            padding: 22px;
+        }
+
+        .place-content h2 {
+            font-size: 23px;
+            margin-bottom: 7px;
+        }
+
+        .category {
+            font-size: 13px;
+            font-weight: bold;
+            color: #999;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .place-description {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+
+
+        .place-button {
+            display: inline-block;
+
+            padding: 11px 20px;
+
+            background-color: #111;
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            transition: 0.3s ease;
+        }
+
+        .place-button:hover {
+            background-color: #555;
+            transform: translateY(-2px);
+        }
+
+
+
+
+        @media (max-width: 900px) {
+
+            .places-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .nav-1 ul {
+                gap: 20px;
+            }
+
+            .nav-1 a {
+                font-size: 13px;
+            }
+
+            .places-section {
+                padding: 0 5% 50px;
+            }
+
+            .places-section h1 {
+                font-size: 30px;
+            }
+
+            .profile-photo {
+                width: 150px;
+                height: 150px;
+            }
+
+            .places-container {
+                grid-template-columns: 1fr;
+            }
+
+            .image-box {
+                height: 210px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <nav class="nav-1">
+        <ul>
+            <li><a href="place.html">Home</a></li>
+            <li><a href="about-nick.html">About Me</a></li>
+            <li><a href="contact-nick.html">Contact Me</a></li>
+        </ul>
+    </nav>
+
+
+    <main>
+
+        <section class="places-section" id="home">
+
             <div class="me">
-                <img src="nicko.jpg" alt="Photo of me" class="profile-photo" width="200px" height="180px" style="border-radius: 50%;" />    
-            </div>        
-            <h2>My Top Picks in Manila</h2>
-                <p class="section-intro">
-        Hi, I'm Nicko! Here are some places in Manila that I recommend for students,
-        tourists, and anyone who wants to explore the city.
-    </p>
-
-    <div class="places-container">
-
-        <article class="place-card">
-            <img src="in.webp" alt="Historic walls and streets of Intramuros in Manila">
-
-            <div class="place-content">
-                <h3>Intramuros</h3>
-                <p class="category">Historical Place • Manila</p>
-                <p>
-                    A great place to experience the history of Manila while
-                    walking around its old streets and Spanish-era architecture.
-                </p>
-                <a href="https://www.istockphoto.com/photos/intramuros" class="place-button">Explore Place</a>
+                <img
+                    src="nicko.jpg"
+                    alt="Photo of Nicko"
+                    class="profile-photo"
+                >
             </div>
-        </article>
+
+            <h1>My Top Picks in Manila</h1>
+
+            <p class="section-intro">
+                Hi, I'm Nicko! Here are some of my recommended places in Manila
+                for students, tourists, and anyone who wants to explore the city.
+            </p>
 
 
-        <article class="place-card">
-            <img src="ri.webp" alt="Rizal Park and the Rizal Monument in Manila">
+            <div class="places-container" id="places">
 
-            <div class="place-content">
-                <h3>Rizal Park</h3>
-                <p class="category">Park • Ermita, Manila</p>
-                <p>
-                    A peaceful place where you can relax, spend time with
-                    friends, and learn more about Philippine history.
-                </p>
-                <a href="https://www.gettyimages.co.jp/%E5%86%99%E7%9C%9F/rizal-park" class="place-button">Explore Place</a>
+
+                <!-- INTRAMUROS -->
+
+                <article class="place-card">
+
+                    <div class="image-box">
+                        <img
+                            src="in.webp"
+                            alt="Historic walls and streets of Intramuros in Manila"
+                        >
+                    </div>
+
+                    <div class="place-content">
+
+                        <h2>Intramuros</h2>
+
+                        <p class="category">
+                            Historical Place • Manila
+                        </p>
+
+                        <p class="place-description">
+                            Explore one of Manila's most historic areas,
+                            filled with old streets, churches, walls,
+                            and Spanish-era architecture.
+                        </p>
+
+                        <a
+                            href="https://www.istockphoto.com/photos/intramuros"
+                            target="_blank"
+                            class="place-button"
+                        >
+                            Explore Place
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- RIZAL PARK -->
+
+                <article class="place-card">
+
+                    <div class="image-box">
+                        <img
+                            src="ri.webp"
+                            alt="Rizal Park and Rizal Monument in Manila"
+                        >
+                    </div>
+
+                    <div class="place-content">
+
+                        <h2>Rizal Park</h2>
+
+                        <p class="category">
+                            Park • Ermita, Manila
+                        </p>
+
+                        <p class="place-description">
+                            A peaceful and historical destination where you
+                            can relax, walk around, and learn more about
+                            Philippine history.
+                        </p>
+
+                        <a
+                            href="https://www.gettyimages.co.jp/%E5%86%99%E7%9C%9F/rizal-park"
+                            target="_blank"
+                            class="place-button"
+                        >
+                            Explore Place
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- NATIONAL MUSEUM -->
+
+                <article class="place-card">
+
+                    <div class="image-box">
+                        <img
+                            src="na.jpg"
+                            alt="National Museum of Fine Arts in Manila"
+                        >
+                    </div>
+
+                    <div class="place-content">
+
+                        <h2>National Museum of Fine Arts</h2>
+
+                        <p class="category">
+                            Museum • Ermita, Manila
+                        </p>
+
+                        <p class="place-description">
+                            A great destination for students and art lovers
+                            who want to discover Filipino artworks,
+                            culture, and history.
+                        </p>
+
+                        <a
+                            href="https://www.nationalmuseum.gov.ph/our-collections/fine-arts/paintings/"
+                            target="_blank"
+                            class="place-button"
+                        >
+                            Explore Place
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- BINONDO -->
+
+                <article class="place-card">
+
+                    <div class="image-box">
+                        <img
+                            src="bi.webp"
+                            alt="Busy streets and shops in Binondo Manila"
+                        >
+                    </div>
+
+                    <div class="place-content">
+
+                        <h2>Binondo</h2>
+
+                        <p class="category">
+                            Food & Culture • Manila
+                        </p>
+
+                        <p class="place-description">
+                            Discover Filipino-Chinese culture while exploring
+                            Chinatown, its busy streets, restaurants,
+                            shops, and famous food destinations.
+                        </p>
+
+                        <a
+                            href="https://www.gettyimages.com/photos/binondo-manila"
+                            target="_blank"
+                            class="place-button"
+                        >
+                            Explore Place
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- MANILA OCEAN PARK -->
+
+                <article class="place-card">
+
+                    <div class="image-box">
+                        <img
+                            src="oce.jpg"
+                            alt="Marine life attraction at Manila Ocean Park"
+                        >
+                    </div>
+
+                    <div class="place-content">
+
+                        <h2>Manila Ocean Park</h2>
+
+                        <p class="category">
+                            Marine Theme Park • Manila
+                        </p>
+
+                        <p class="place-description">
+                            A fun and educational attraction where you can
+                            discover marine life and enjoy interactive
+                            activities with friends or family.
+                        </p>
+
+                        <a
+                            href="https://www.shutterstock.com/search/manila-ocean-park"
+                            target="_blank"
+                            class="place-button"
+                        >
+                            Explore Place
+                        </a>
+
+                    </div>
+
+                </article>
+
+
             </div>
-        </article>
 
+        </section>
 
-        <article class="place-card">
-            <img src="na.jpg" alt="National Museum of Fine Arts in Manila">
+    </main>
 
-            <div class="place-content">
-                <h3>National Museum of Fine Arts</h3>
-                <p class="category">Museum • Ermita, Manila</p>
-                <p>
-                    A good place for students and art lovers who want to
-                    appreciate Filipino art, culture, and history.
-                </p>
-                <a href="https://www.nationalmuseum.gov.ph/our-collections/fine-arts/paintings/" class="place-button">Explore Place</a>
-            </div>
-        </article>
+</body>
 
-
-        <article class="place-card">
-            <img src="bi.webp" alt="Busy streets and shops in Binondo Manila">
-
-            <div class="place-content">
-                <h3>Binondo</h3>
-                <p class="category">Food & Culture • Manila</p>
-                <p>
-                    A fun place to explore Filipino-Chinese culture while
-                    trying different foods and discovering Chinatown.
-                </p>
-                <a href="https://www.gettyimages.com/photos/binondo-manila  " class="place-button">Explore Place</a>
-            </div>
-        </article>
-
-
-        <article class="place-card">
-            <img src="oce.jpg" alt="Marine life attraction at Manila Ocean Park">
-
-            <div class="place-content">
-                <h3>Manila Ocean Park</h3>
-                <p class="category">Marine Theme Park • Manila</p>
-                <p>
-                    A fun and educational place where you can see marine life
-                    and enjoy interactive attractions with friends or family.
-                </p>
-                <a href="https://www.shutterstock.com/search/manila-ocean-park" class="place-button">Explore Place</a>
-            </div>
-        </article>
-
-    </div>
-</section>
-
-<style>
-
-html, body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f5f7fa;
-    scroll-behavior: smooth;
-}
-
-.me{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50px;
-    
-}
-.places-section {
-    padding: 60px 8%;
-    background-color: #f5f7fa;
-    text-align: center;
-}
-
-.places-section h2 {
-    font-size: 36px;
-    margin-bottom: 10px;
-    color: #222;
-}
-
-.section-intro {
-    max-width: 700px;
-    margin: 0 auto 40px;
-    color: #666;
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-
-.places-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    max-width: 1200px;
-    margin: auto;
-}
-
-
-.place-card {
-    background-color: white;
-    border-radius: 15px;
-    overflow: hidden;
-    text-align: left;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.place-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-}
-
-
-/* Card Image */
-
-.place-card img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    display: block;
-}
-
-
-.place-content {
-    padding: 22px;
-}
-
-.place-content h3 {
-    margin: 0 0 8px;
-    font-size: 23px;
-    color: #222;
-}
-
-.place-content p {
-    color: #666;
-    line-height: 1.6;
-}
-
-.place-content .category {
-    color: #777;
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 12px;
-}
-
-
-.place-button {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 18px;
-    background-color: #222;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-}
-
-.place-button:hover {
-    background-color: #555;
-}
-
-
-
-@media (max-width: 900px) {
-    .places-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-
-@media (max-width: 600px) {
-    .places-section {
-        padding: 40px 5%;
-    }
-
-    .places-section h2 {
-        font-size: 28px;
-    }
-
-    .places-container {
-        grid-template-columns: 1fr;
-    }
-
-    .place-card img {
-        height: 200px;
-    }
-}
-</style>
+</html>
+```
