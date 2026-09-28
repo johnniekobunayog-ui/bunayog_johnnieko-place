@@ -1,168 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
-    <title>Document</title>
-</head>
-<body>
+    <title>Contact Me - Nicko</title>
 
-     <nav class="nav-1">
-        <ul>
-          <li><a href="index1.html">Home</a></li>
-            <li><a href="about-nick.html">About Me</a></li>
-            <li><a href="contact-nick.html">Contact Me</a></li>
-        </ul>
-    </nav>
-
-<section class="contact-us">
-
-    <div class="contact-container">
-
-        <div class="contact-left">
-
-            <h1>Contact Us</h1>
-
-            <p>
-                Have a question about our thrift pieces,
-                your order, or just want to say hello?
-                We'd love to hear from you.
-            </p>
-
-            <div class="contact-item">
-
-                <div class="contact-icon">
-                    <i class="ri-phone-fill"></i>
-                </div>
-
-                <div>
-                    <span>Phone</span>
-                    <a href="tel:09238103202">
-                        0923 810 3202
-                    </a>
-                </div>
-
-            </div>
-
-            <div class="contact-item">
-
-                <div class="contact-icon">
-                    <i class="ri-mail-fill"></i>
-                </div>
-
-                <div>
-                    <span>Email</span>
-                    <a href="johnnickobunayog@gmai.com">
-                       johnnickobunayog@gmail.com
-                    </a>
-                </div>
-
-            </div>
-
-            <div class="contact-item">
-
-                <div class="contact-icon">
-                    <i class="ri-map-pin-fill"></i>
-                </div>
-
-                <div>
-                    <span>Location</span>
-                    <p>Philippines</p>
-                </div>
-
-            </div>
-
-            <div class="contact-socials">
-
-                <a href="#">
-                    <i class="ri-facebook-fill"></i>
-                </a>
-
-                <a href="#">
-                    <i class="ri-tiktok-fill"></i>
-                </a>
-
-                <a href="#">
-                    <i class="ri-instagram-fill"></i>
-                </a>
-
-            </div>
-
-        </div>
-
-        <div class="contact-right">
-
-            <h2>Let's talk.</h2>
-
-            <p class="description">
-                Send us a message and we'll get back to you
-                as soon as we can.
-            </p>
-
-            <form>
-
-                <div class="contact-form-group">
-
-                    <label for="name">
-                        Name
-                    </label>
-
-                    <input
-                        type="text"
-                        id="name"
-                        placeholder="Enter your name"
-                        required
-                    >
-
-                </div>
-
-                <div class="contact-form-group">
-
-                    <label for="email">
-                        Email
-                    </label>
-
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="Enter your email"
-                        required
-                    >
-
-                </div>
-
-                <div class="contact-form-group">
-
-                    <label for="message">
-                        Message
-                    </label>
-
-                    <textarea
-                        id="message"
-                        placeholder="Write your message here..."
-                        required
-                    ></textarea>
-
-                </div>
-
-                <button
-                    type="submit"
-                    class="contact-submit"
-                >
-                    Send Message
-                </button>
-
-            </form>
-
-        </div>
-
-    </div>
-
-</section>
-<style>
-
-         * {
+    <style>
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -174,250 +20,668 @@
             color: #222;
         }
 
-
-     .nav-1 {
-            background: #111;
-            padding: 18px 20px;
+        .page {
+            display: grid;
+            grid-template-columns: 0 1fr;
+            grid-template-areas:
+                "masthead masthead"
+                "side main"
+                "foot foot";
+            gap: 20px;
+            width: 100%;
+            min-height: 100vh;
+            padding: 20px;
         }
 
-        .nav-1 ul {
+        .empty-header {
+            grid-area: masthead;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .guide-sidebar {
+            grid-area: side;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            max-width: 82vw;
+            height: 100vh;
+            padding: 30px 22px;
+            background: #111;
+            color: white;
+            z-index: 4000;
+            overflow-y: auto;
+            transform: translateX(-105%);
+            transition: transform 0.35s ease;
+            box-shadow: 8px 0 25px rgba(0, 0, 0, 0.18);
+        }
+
+        .guide-sidebar.open {
+            transform: translateX(0);
+        }
+
+        .menu-toggle {
+            position: fixed;
+            top: 22px;
+            left: 22px;
+            width: 52px;
+            height: 52px;
+            border: none;
+            border-radius: 10px;
+            background: #111;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            cursor: pointer;
+            z-index: 5000;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+            transition: 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        .menu-toggle.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 3998;
+            transition: 0.3s ease;
+        }
+
+        .sidebar-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sidebar-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 15px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+            margin-bottom: 18px;
+        }
+
+        .sidebar-title span {
+            display: block;
+            color: #999;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+        }
+
+        .sidebar-title h2 {
+            font-size: 25px;
+        }
+
+        .sidebar-close {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: transparent;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .sidebar-close:hover {
+            background: white;
+            color: #111;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 12px 13px;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+            font-size: 14px;
+            transition: 0.3s ease;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: white;
+            color: #111;
+        }
+
+        .sidebar-categories {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+
+        .sidebar-categories h3 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .sidebar-categories a {
+            display: block;
+            color: #bbb;
+            text-decoration: none;
+            font-size: 13px;
+            padding: 7px 0;
+            transition: 0.3s ease;
+        }
+
+        .sidebar-categories a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        main {
+            grid-area: main;
+            min-width: 0;
+        }
+
+        .contact-us {
+            width: 100%;
+            min-height: 650px;
+            padding: 70px 25px;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 45px;
-            list-style: none;
         }
 
-        .nav-1 a {
-            position: relative;
-            color: white;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            padding: 8px 0;
-            transition: 0.3s ease;
-        }
-
-        .nav-1 a::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            width: 0;
-            height: 2px;
-            background: white;
-            transform: translateX(-50%);
-            transition: 0.3s ease;
-        }
-
-        .nav-1 a:hover {
-            color: #aaa;
-        }
-
-        .nav-1 a:hover::after {
+        .contact-container {
             width: 100%;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
         }
 
-.contact-us {
-    width: 100%;
-    min-height: 650px;
-    padding: 100px 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        .contact-left {
+            background: #000;
+            color: white;
+            padding: 50px 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-.contact-container {
-    width: 100%;
-    max-width: 1000px;
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-}
+        .contact-left h1 {
+            font-size: 42px;
+            font-style: italic;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
 
-.contact-left {
-    background: #000;
-    color: white;
-    padding: 50px 45px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
+        .contact-left > p {
+            color: #ccc;
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
 
-.contact-left h1 {
-    font-size: 42px;
-    font-style: italic;
-    letter-spacing: 1px;
-    margin-bottom: 18px;
-}
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 24px;
+        }
 
-.contact-left > p {
-    color: #ccc;
-    font-size: 14px;
-    line-height: 1.8;
-    margin-bottom: 35px;
-}
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+            min-width: 45px;
+            border: 1px solid #555;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
 
-.contact-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 24px;
-}
+        .contact-item span {
+            display: block;
+            color: #888;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
 
-.contact-icon {
-    width: 45px;
-    height: 45px;
-    min-width: 45px;
-    border: 1px solid #555;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-}
+        .contact-item a,
+        .contact-item p {
+            color: white;
+            font-size: 14px;
+        }
 
-.contact-item span {
-    display: block;
-    color: #888;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 4px;
-}
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
 
-.contact-item a,
-.contact-item p {
-    color: white;
-    font-size: 14px;
-}
+        .contact-socials {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
 
-.contact-item a:hover {
-    text-decoration: underline;
-}
+        .contact-socials a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #555;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s ease;
+        }
 
-.contact-socials {
-    display: flex;
-    gap: 12px;
-    margin-top: 15px;
-}
+        .contact-socials a:hover {
+            background: white;
+            color: black;
+            transform: translateY(-3px);
+        }
 
-.contact-socials a {
-    width: 40px;
-    height: 40px;
-    border: 1px solid #555;
-    border-radius: 50%;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s ease;
-}
+        .contact-right {
+            padding: 50px 45px;
+            background: white;
+        }
 
-.contact-socials a:hover {
-    background: white;
-    color: black;
-    transform: translateY(-3px);
-}
+        .contact-right h2 {
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
 
-.contact-right {
-    padding: 50px 45px;
-    background: white;
-}
+        .contact-right .description {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
 
-.contact-right h2 {
-    font-size: 27px;
-    margin-bottom: 8px;
-}
+        .contact-form-group {
+            margin-bottom: 18px;
+        }
 
-.contact-right .description {
-    color: #777;
-    font-size: 14px;
-    line-height: 1.7;
-    margin-bottom: 28px;
-}
+        .contact-form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
 
-.contact-form-group {
-    margin-bottom: 18px;
-}
+        .contact-form-group input,
+        .contact-form-group textarea {
+            width: 100%;
+            border: 1px solid #ccc;
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 13px 15px;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s ease;
+        }
 
-.contact-form-group label {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 8px;
-}
+        .contact-form-group input {
+            height: 47px;
+        }
 
-.contact-form-group input,
-.contact-form-group textarea {
-    width: 100%;
-    border: 1px solid #ccc;
-    background: #fafafa;
-    border-radius: 8px;
-    padding: 13px 15px;
-    font-size: 14px;
-    outline: none;
-    transition: 0.3s ease;
-}
+        .contact-form-group textarea {
+            height: 120px;
+            resize: none;
+        }
 
-.contact-form-group input {
-    height: 47px;
-}
+        .contact-form-group input:focus,
+        .contact-form-group textarea:focus {
+            background: white;
+            border-color: black;
+        }
 
-.contact-form-group textarea {
-    height: 120px;
-    resize: none;
-}
+        .contact-submit {
+            width: 100%;
+            height: 48px;
+            border: none;
+            border-radius: 8px;
+            background: black;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
 
-.contact-form-group input:focus,
-.contact-form-group textarea:focus {
-    background: white;
-    border-color: black;
-}
+        .contact-submit:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
 
-.contact-submit {
-    width: 100%;
-    height: 48px;
-    border: none;
-    border-radius: 8px;
-    background: black;
-    color: white;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
+        .page-footer {
+            grid-area: foot;
+            text-align: center;
+            padding: 15px;
+            color: #777;
+            font-size: 13px;
+        }
 
-.contact-submit:hover {
-    background: #333;
-    transform: translateY(-2px);
-}
+        @media (max-width: 768px) {
+            .contact-us {
+                padding: 70px 18px;
+            }
 
-@media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+            }
 
-    .contact-us {
-        padding: 80px 18px;
-    }
+            .contact-left {
+                padding: 45px 35px;
+            }
 
-    .contact-container {
-        grid-template-columns: 1fr;
-        max-width: 600px;
-    }
+            .contact-right {
+                padding: 45px 35px;
+            }
+        }
 
-    .contact-left {
-        padding: 45px 35px;
-    }
+        @media (max-width: 500px) {
+            .page {
+                padding: 10px;
+            }
 
-    .contact-right {
-        padding: 45px 35px;
-    }
-}
+            .menu-toggle {
+                top: 15px;
+                left: 15px;
+                width: 48px;
+                height: 48px;
+            }
 
-</style>
+            .guide-sidebar {
+                width: 280px;
+            }
+
+            .contact-us {
+                padding: 50px 5px;
+            }
+
+            .contact-left {
+                padding: 35px 25px;
+            }
+
+            .contact-right {
+                padding: 35px 25px;
+            }
+
+            .contact-left h1 {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page">
+
+        <header class="empty-header"></header>
+
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false">
+            <i class="ri-menu-line"></i>
+        </button>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <aside class="guide-sidebar" id="guideSidebar">
+
+            <div class="sidebar-top">
+                <div class="sidebar-title">
+                    <span>MANILA GUIDE</span>
+                    <h2>Explore</h2>
+                </div>
+
+                <button class="sidebar-close" id="sidebarClose" type="button" aria-label="Close menu">
+                    <i class="ri-close-line"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="place.html">Home</a>
+                <a href="place.html#places">Top Picks</a>
+                <a href="place.html#suggest">Suggest a Place</a>
+                <a href="about-nick.html">About Me</a>
+                <a href="contact-nick.html" class="active">Contact Me</a>
+            </nav>
+
+            <div class="sidebar-categories">
+                <h3>Categories</h3>
+                <a href="place.html#places">Historical Places</a>
+                <a href="place.html#places">Parks & Outdoors</a>
+                <a href="place.html#places">Museums & Culture</a>
+                <a href="place.html#places">Food & Culture</a>
+                <a href="place.html#places">Marine Attractions</a>
+            </div>
+
+        </aside>
+
+        <main>
+
+            <section class="contact-us">
+
+                <div class="contact-container">
+
+                    <div class="contact-left">
+
+                        <h1>Contact Us</h1>
+
+                        <p>
+                            Have a question about our thrift pieces,
+                            your order, or just want to say hello?
+                            We'd love to hear from you.
+                        </p>
+
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+                                <i class="ri-phone-fill"></i>
+                            </div>
+
+                            <div>
+                                <span>Phone</span>
+                                <a href="tel:09238103202">
+                                    0923 810 3202
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+                                <i class="ri-mail-fill"></i>
+                            </div>
+
+                            <div>
+                                <span>Email</span>
+                                <a href="mailto:johnnickobunayog@gmail.com">
+                                    johnnickobunayog@gmail.com
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+                                <i class="ri-map-pin-fill"></i>
+                            </div>
+
+                            <div>
+                                <span>Location</span>
+                                <p>Philippines</p>
+                            </div>
+
+                        </div>
+
+                        <div class="contact-socials">
+
+                            <a href="#">
+                                <i class="ri-facebook-fill"></i>
+                            </a>
+
+                            <a href="#">
+                                <i class="ri-tiktok-fill"></i>
+                            </a>
+
+                            <a href="#">
+                                <i class="ri-instagram-fill"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="contact-right">
+
+                        <h2>Let's talk.</h2>
+
+                        <p class="description">
+                            Send us a message and we'll get back to you
+                            as soon as we can.
+                        </p>
+
+                        <form>
+
+                            <div class="contact-form-group">
+
+                                <label for="name">
+                                    Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="name"
+                                    placeholder="Enter your name"
+                                    required
+                                >
+
+                            </div>
+
+                            <div class="contact-form-group">
+
+                                <label for="email">
+                                    Email
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    placeholder="Enter your email"
+                                    required
+                                >
+
+                            </div>
+
+                            <div class="contact-form-group">
+
+                                <label for="message">
+                                    Message
+                                </label>
+
+                                <textarea
+                                    id="message"
+                                    placeholder="Write your message here..."
+                                    required
+                                ></textarea>
+
+                            </div>
+
+                            <button
+                                type="submit"
+                                class="contact-submit"
+                            >
+                                Send Message
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <footer class="page-footer">
+            My Top Picks in Manila
+        </footer>
+
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById("menuToggle");
+        const sidebar = document.getElementById("guideSidebar");
+        const sidebarClose = document.getElementById("sidebarClose");
+        const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+        function openSidebar() {
+            sidebar.classList.add("open");
+            sidebarOverlay.classList.add("show");
+            menuToggle.classList.add("hidden");
+            menuToggle.setAttribute("aria-expanded", "true");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove("open");
+            sidebarOverlay.classList.remove("show");
+            menuToggle.classList.remove("hidden");
+            menuToggle.setAttribute("aria-expanded", "false");
+            document.body.style.overflow = "";
+        }
+
+        menuToggle.addEventListener("click", openSidebar);
+        sidebarClose.addEventListener("click", closeSidebar);
+        sidebarOverlay.addEventListener("click", closeSidebar);
+
+        sidebar.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", closeSidebar);
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                closeSidebar();
+            }
+        });
+    </script>
+
 </body>
+
 </html>
