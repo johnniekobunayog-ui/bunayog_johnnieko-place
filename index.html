@@ -1,17 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>My Top Picks in Manila</title>
 
     <style>
-        :root {
-            --brand: #111111;
-            --dark-ink: #222222;
-            --muted-grey: #555555;
-            --light-background: #f4f5f7;
-            --white: #ffffff;
+        .page {
+            display: grid;
+            grid-template-columns: 220px minmax(0, 1fr);
+            grid-template-areas:
+                "masthead masthead"
+                "side main"
+                "foot foot";
+            gap: 16px;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .page > header {
+            grid-area: masthead;
+        }
+
+        .page > aside {
+            grid-area: side;
+        }
+
+        .page > main {
+            grid-area: main;
+            min-width: 0;
+        }
+
+        .page > footer {
+            grid-area: foot;
+        }
+
+        .guide-sidebar {
+            background: #111;
+            color: white;
+            border-radius: 14px;
+            padding: 28px 20px;
+            min-height: 520px;
+            height: fit-content;
+            position: sticky;
+            top: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .sidebar-title {
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+            margin-bottom: 18px;
+        }
+
+        .sidebar-title span {
+            display: block;
+            color: #999;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+        }
+
+        .sidebar-title h2 {
+            margin: 0;
+            font-size: 25px;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 12px 13px;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+            font-size: 14px;
+            transition: 0.3s ease;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: white;
+            color: #111;
+        }
+
+        .sidebar-categories {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+
+        .sidebar-categories h3 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .sidebar-categories a {
+            display: block;
+            color: #bbb;
+            text-decoration: none;
+            font-size: 13px;
+            padding: 7px 0;
+            transition: 0.3s ease;
+        }
+
+        .sidebar-categories a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .guide-footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 22px;
+            border-radius: 14px;
+        }
+
+        .guide-footer p {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        @media (max-width: 900px) {
+            .page {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "masthead"
+                    "side"
+                    "main"
+                    "foot";
+            }
+
+            .guide-sidebar {
+                position: static;
+            }
         }
 
         * {
@@ -26,9 +158,10 @@
 
         body {
             font-family: Arial, sans-serif;
-            background-color: var(--light-background);
-            color: var(--dark-ink);
+            background-color: #f4f5f7;
+            color: #222;
         }
+
 
         .nav-1 {
             width: 100%;
@@ -76,10 +209,13 @@
             width: 100%;
         }
 
+
+
         .places-section {
             padding: 0 8% 70px;
             text-align: center;
         }
+
 
         .me {
             display: flex;
@@ -96,6 +232,7 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
+
         .places-section h1 {
             font-size: 40px;
             margin-bottom: 12px;
@@ -109,30 +246,35 @@
             line-height: 1.7;
         }
 
+
+
         .places-container {
             max-width: 1200px;
             margin: auto;
+
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 25px;
         }
 
         .place-card {
-            background-color: var(--white);
+            background-color: white;
             border-radius: 18px;
-            padding: 16px;
-            border-left: 5px solid var(--brand);
-            margin-bottom: 20px;
             overflow: hidden;
             text-align: left;
+
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
         }
 
         .place-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
+
 
         .image-box {
             width: 100%;
@@ -158,14 +300,13 @@
 
         .place-content h2 {
             font-size: 23px;
-            color: var(--dark-ink);
             margin-bottom: 7px;
         }
 
         .category {
             font-size: 13px;
             font-weight: bold;
-            color: var(--muted-grey);
+            color: #999;
             margin-bottom: 12px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -178,15 +319,23 @@
             margin-bottom: 20px;
         }
 
+
+
         .place-button {
             display: inline-block;
+
             padding: 11px 20px;
+
             background-color: #111;
             color: white;
+
             text-decoration: none;
+
             border-radius: 8px;
+
             font-size: 14px;
             font-weight: bold;
+
             transition: 0.3s ease;
         }
 
@@ -194,6 +343,10 @@
             background-color: #555;
             transform: translateY(-2px);
         }
+
+
+
+
 
         .suggest-section {
             max-width: 1200px;
@@ -204,7 +357,7 @@
         .suggest-card {
             max-width: 700px;
             margin: 0 auto;
-            background-color: white;
+            background: white;
             padding: 40px;
             border-radius: 18px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
@@ -240,24 +393,21 @@
         }
 
         .suggest-card input[type="text"],
-        .suggest-card input[type="email"],
-        .suggest-card textarea {
+        .suggest-card input[type="email"] {
             width: 100%;
             padding: 13px 15px;
             border: 1px solid #ccc;
             border-radius: 8px;
             font-size: 15px;
             font-family: Arial, sans-serif;
-            color: var(--dark-ink);
-            background-color: var(--white);
+            outline: none;
             transition: 0.3s ease;
         }
 
-        .suggest-card input:focus,
-        .suggest-card textarea:focus {
-            outline: 3px solid var(--brand);
-            outline-offset: 2px;
-            border-color: var(--brand);
+        .suggest-card input[type="text"]:focus,
+        .suggest-card input[type="email"]:focus {
+            border-color: #111;
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
         }
 
         .suggest-card fieldset {
@@ -268,7 +418,6 @@
 
         .suggest-card legend {
             padding: 0 8px;
-            color: var(--brand);
         }
 
         .suggest-option {
@@ -297,8 +446,8 @@
             padding: 14px;
             border: none;
             border-radius: 8px;
-            background-color: var(--brand);
-            color: var(--white);
+            background: #111;
+            color: white;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
@@ -306,7 +455,7 @@
         }
 
         .suggest-submit:hover {
-            background-color: #555;
+            background: #555;
             transform: translateY(-2px);
         }
 
@@ -314,13 +463,31 @@
             color: #d00000;
         }
 
-        @media (max-width: 900px) {
-            .places-container {
-                grid-template-columns: repeat(2, 1fr);
+        @media (max-width: 600px) {
+            .suggest-section {
+                padding: 10px 5% 50px;
+            }
+
+            .suggest-card {
+                padding: 25px 20px;
+            }
+
+            .suggest-header h2 {
+                font-size: 27px;
             }
         }
 
+        @media (max-width: 900px) {
+
+            .places-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
         @media (max-width: 600px) {
+
             .nav-1 ul {
                 gap: 20px;
             }
@@ -350,32 +517,51 @@
                 height: 210px;
             }
 
-            .suggest-section {
-                padding: 10px 5% 50px;
-            }
-
-            .suggest-card {
-                padding: 25px 20px;
-            }
-
-            .suggest-header h2 {
-                font-size: 27px;
-            }
         }
+
     </style>
 </head>
 
+
 <body>
 
-    <nav class="nav-1">
-        <ul>
-            <li><a href="index1.html">Home</a></li>
-            <li><a href="about-nick.html">About Me</a></li>
-            <li><a href="contact-nick.html">Contact Me</a></li>
-        </ul>
-    </nav>
+    <div class="page">
 
-    <main>
+        <header>
+            <nav class="nav-1">
+                <ul>
+                    <li><a href="place.html">Home</a></li>
+                    <li><a href="about-nick.html">About Me</a></li>
+                    <li><a href="contact-nick.html">Contact Me</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <aside class="guide-sidebar">
+            <div class="sidebar-title">
+                <span>MANILA GUIDE</span>
+                <h2>Explore</h2>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="place.html" class="active">Home</a>
+                <a href="#places">Top Picks</a>
+                <a href="#suggest">Suggest a Place</a>
+                <a href="about-nick.html">About Me</a>
+                <a href="contact-nick.html">Contact Me</a>
+            </nav>
+
+            <div class="sidebar-categories">
+                <h3>Categories</h3>
+                <a href="#places">Historical Places</a>
+                <a href="#places">Parks & Outdoors</a>
+                <a href="#places">Museums & Culture</a>
+                <a href="#places">Food & Culture</a>
+                <a href="#places">Marine Attractions</a>
+            </div>
+        </aside>
+
+        <main>
 
         <section class="places-section" id="home">
 
@@ -394,7 +580,11 @@
                 for students, tourists, and anyone who wants to explore the city.
             </p>
 
+
             <div class="places-container" id="places">
+
+
+                <!-- INTRAMUROS -->
 
                 <article class="place-card">
 
@@ -431,6 +621,9 @@
 
                 </article>
 
+
+                <!-- RIZAL PARK -->
+
                 <article class="place-card">
 
                     <div class="image-box">
@@ -465,6 +658,9 @@
                     </div>
 
                 </article>
+
+
+                <!-- NATIONAL MUSEUM -->
 
                 <article class="place-card">
 
@@ -501,6 +697,9 @@
 
                 </article>
 
+
+                <!-- BINONDO -->
+
                 <article class="place-card">
 
                     <div class="image-box">
@@ -535,6 +734,9 @@
                     </div>
 
                 </article>
+
+
+                <!-- MANILA OCEAN PARK -->
 
                 <article class="place-card">
 
@@ -571,17 +773,16 @@
 
                 </article>
 
+
             </div>
 
         </section>
 
+
         <section class="suggest-section" id="suggest">
-
             <div class="suggest-card">
-
                 <div class="suggest-header">
                     <h2>📍 Suggest-a-Place</h2>
-
                     <p>
                         Know a great place that should be added to our guide?
                         Share your recommendation with us!
@@ -589,13 +790,10 @@
                 </div>
 
                 <form action="#" method="post">
-
                     <div class="suggest-form-group">
-
                         <label for="place-name">
                             Place Name <span class="required">*</span>
                         </label>
-
                         <input
                             type="text"
                             id="place-name"
@@ -603,94 +801,56 @@
                             placeholder="Enter the name of the place"
                             required
                         >
-
                     </div>
 
                     <div class="suggest-form-group">
-
                         <fieldset>
-
                             <legend>
                                 Category <span class="required">*</span>
                             </legend>
 
                             <label class="suggest-option">
-                                <input
-                                    type="radio"
-                                    name="category"
-                                    value="food"
-                                    required
-                                >
+                                <input type="radio" name="category" value="food" required>
                                 Food
                             </label>
 
                             <label class="suggest-option">
-                                <input
-                                    type="radio"
-                                    name="category"
-                                    value="study-spot"
-                                >
+                                <input type="radio" name="category" value="study-spot">
                                 Study Spot
                             </label>
 
                             <label class="suggest-option">
-                                <input
-                                    type="radio"
-                                    name="category"
-                                    value="outdoors"
-                                >
+                                <input type="radio" name="category" value="outdoors">
                                 Outdoors
                             </label>
-
                         </fieldset>
-
                     </div>
 
                     <div class="suggest-form-group">
-
                         <fieldset>
-
-                            <legend>
-                                What's good about it?
-                            </legend>
+                            <legend>What's good about it?</legend>
 
                             <label class="suggest-option">
-                                <input
-                                    type="checkbox"
-                                    name="features[]"
-                                    value="affordable"
-                                >
+                                <input type="checkbox" name="features[]" value="affordable">
                                 Affordable
                             </label>
 
                             <label class="suggest-option">
-                                <input
-                                    type="checkbox"
-                                    name="features[]"
-                                    value="good-wifi"
-                                >
+                                <input type="checkbox" name="features[]" value="good-wifi">
                                 Good WiFi
                             </label>
 
                             <label class="suggest-option">
-                                <input
-                                    type="checkbox"
-                                    name="features[]"
-                                    value="quiet"
-                                >
+                                <input type="checkbox" name="features[]" value="quiet">
                                 Quiet
                             </label>
-
                         </fieldset>
-
                     </div>
 
                     <div class="suggest-form-group">
-
                         <label for="contact-email">
                             Contact Email <span class="required">*</span>
                         </label>
-
                         <input
                             type="email"
                             id="contact-email"
@@ -698,23 +858,24 @@
                             placeholder="example@email.com"
                             required
                         >
-
                     </div>
 
-                    <button
-                        type="submit"
-                        class="suggest-submit"
-                    >
+                    <button type="submit" class="suggest-submit">
                         Submit Suggestion
                     </button>
-
                 </form>
-
             </div>
-
         </section>
 
-    </main>
+        </main>
+
+        <footer class="guide-footer">
+            <p>My Top Picks in Manila • A simple guide to places worth exploring.</p>
+        </footer>
+
+    </div>
 
 </body>
+
 </html>
+```
