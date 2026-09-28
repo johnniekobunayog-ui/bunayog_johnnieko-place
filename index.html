@@ -71,6 +71,12 @@
             background: #333;
         }
 
+        .menu-toggle.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
         .sidebar-overlay {
             position: fixed;
             inset: 0;
@@ -980,15 +986,17 @@
         function openSidebar() {
             sidebar.classList.add("open");
             sidebarOverlay.classList.add("show");
+            menuToggle.classList.add("hidden");
             menuToggle.setAttribute("aria-expanded", "true");
             menuToggle.setAttribute("aria-label", "Close menu");
-            menuIcon.className = "ri-close-line";
+            menuIcon.className = "ri-menu-line";
             document.body.style.overflow = "hidden";
         }
 
         function closeSidebar() {
             sidebar.classList.remove("open");
             sidebarOverlay.classList.remove("show");
+            menuToggle.classList.remove("hidden");
             menuToggle.setAttribute("aria-expanded", "false");
             menuToggle.setAttribute("aria-label", "Open menu");
             menuIcon.className = "ri-menu-line";
